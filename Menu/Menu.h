@@ -7,13 +7,7 @@
 
 
 
-void iniciarMenu();
-void mostrarOpciones();
-int pedirOrdenamiento();
-void mostrarReferencias();
-void salir();
-
-
-
+int obtener_opcion(int min, int max);
+int mostrar_menu();
 
 #endif //PROGRAESTRUCTURAS02_MENU_H
