@@ -15,12 +15,13 @@ int mostrar_menu() {
     printf("2. Ordenar por Palabras en el Título (Menor a Mayor)\n");
     printf("3. Ordenar por Ruta del Archivo\n");
     printf("4. Ordenamiento Propio: Longitud del Resumen (Menor a Mayor)\n");
-    printf("5. Mostrar el primer artículo cargado (Verificación)\n");
+    printf("5. Ordenamiento Propio: Fecha mas reciente\n");
+    printf("6. Mostrar el primer artículo cargado (Verificación)\n");
     printf("0. Salir\n");
     printf("==============================================\n");
 
     // Llama a la función que solicita y valida la entrada
-    return obtener_opcion(0, 5);
+    return obtener_opcion(0, 6);
 }
 
 /**

@@ -170,7 +170,8 @@ int comparar(Articulo a, Articulo b, int tipo) {
 
     case 4:
         return (int)strlen(a.abstract) - (int)strlen(b.abstract);
-
+    case 5:
+        return strcmp(b.fecha,a.fecha);
     default:
         return 0;
     }

@@ -185,13 +185,40 @@ int main(int argc, char *argv[]) {
             // =================================================================
             // CASO 5: Muestra el primer artículo cargado
             // =================================================================
-            case 5:
+            case 6:
                 printf("\n\n-- Ha elegido: Mostrar primer artículo cargado --\n");
                 if (num_articulos > 0) {
                     imprimir_detalle(lista_articulos[0]);
                 } else {
                     printf("No hay artículos cargados para mostrar.\n");
                 }
+                break;
+
+            case 5:
+                printf("\n\n-- Ha elegido: Ordenar por Fecha mas reciente --\n");
+
+                // 1. Crear el montículo con tipo de ordenamiento 3
+                monticulo_ordenamiento = crear_monticulo(num_articulos, 3);
+                if (monticulo_ordenamiento == NULL) {
+                    fprintf(stderr, "Error al crear el montículo.\n");
+                    break;
+                }
+
+                // 2. Insertar todos los artículos
+                for (int i = 0; i < num_articulos; i++) {
+                    insertar(monticulo_ordenamiento, lista_articulos[i]);
+                }
+
+                printf("\n--- RESULTADO ORDENADO ---\n");
+                // 3. Extraer y mostrar en orden
+                for (int i = 0; i < num_articulos; i++) {
+                    Articulo a = extraer_tope(monticulo_ordenamiento);
+                    imprimir_detalle(a);
+                    printf("--------------------------------------\n");
+                }
+
+                // 4. Liberar la memoria
+                destruir_monticulo(monticulo_ordenamiento);
                 break;
 
             // =================================================================
