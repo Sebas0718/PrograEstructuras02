@@ -5,11 +5,10 @@
 #ifndef PROGRAESTRUCTURAS02_IMPRESOR_H
 #define PROGRAESTRUCTURAS02_IMPRESOR_H
 
-// void imprimir_referencias();
-// void imprimir_articulos_por_titulo();
-// void imprimir_articulos_por_tamano();
-// void imprimir_articulos_por_nombre();
-// void imprimir_articulos_por_fecha();
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "../Estructuras/Articulo.h"
+void imprimir_detalle(struct Articulo a);
 
 #endif //PROGRAESTRUCTURAS02_IMPRESOR_H

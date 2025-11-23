@@ -6,6 +6,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/PrograEstructuras02.dir/Lector/Lector.c.o.d"
   "CMakeFiles/PrograEstructuras02.dir/Menu/Menu.c.o"
   "CMakeFiles/PrograEstructuras02.dir/Menu/Menu.c.o.d"
+  "CMakeFiles/PrograEstructuras02.dir/Programa/Programa.c.o"
+  "CMakeFiles/PrograEstructuras02.dir/Programa/Programa.c.o.d"
   "CMakeFiles/PrograEstructuras02.dir/main.c.o"
   "CMakeFiles/PrograEstructuras02.dir/main.c.o.d"
   "PrograEstructuras02"

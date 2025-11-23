@@ -201,6 +201,30 @@ Menu/Menu.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PrograEstructuras02.dir/build.make CMakeFiles/PrograEstructuras02.dir/Menu/Menu.c.s
 .PHONY : Menu/Menu.c.s
 
+Programa/Programa.o: Programa/Programa.c.o
+.PHONY : Programa/Programa.o
+
+# target to build an object file
+Programa/Programa.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PrograEstructuras02.dir/build.make CMakeFiles/PrograEstructuras02.dir/Programa/Programa.c.o
+.PHONY : Programa/Programa.c.o
+
+Programa/Programa.i: Programa/Programa.c.i
+.PHONY : Programa/Programa.i
+
+# target to preprocess a source file
+Programa/Programa.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PrograEstructuras02.dir/build.make CMakeFiles/PrograEstructuras02.dir/Programa/Programa.c.i
+.PHONY : Programa/Programa.c.i
+
+Programa/Programa.s: Programa/Programa.c.s
+.PHONY : Programa/Programa.s
+
+# target to generate assembly for a file
+Programa/Programa.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/PrograEstructuras02.dir/build.make CMakeFiles/PrograEstructuras02.dir/Programa/Programa.c.s
+.PHONY : Programa/Programa.c.s
+
 main.o: main.c.o
 .PHONY : main.o
 
@@ -243,6 +267,9 @@ help:
 	@echo "... Menu/Menu.o"
 	@echo "... Menu/Menu.i"
 	@echo "... Menu/Menu.s"
+	@echo "... Programa/Programa.o"
+	@echo "... Programa/Programa.i"
+	@echo "... Programa/Programa.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

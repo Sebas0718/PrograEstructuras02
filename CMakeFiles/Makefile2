@@ -85,12 +85,12 @@ clean: CMakeFiles/PrograEstructuras02.dir/clean
 CMakeFiles/PrograEstructuras02.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PrograEstructuras02.dir/build.make CMakeFiles/PrograEstructuras02.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PrograEstructuras02.dir/build.make CMakeFiles/PrograEstructuras02.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/seb/Documents/GitHub/PrograEstructuras02/CMakeFiles --progress-num=1,2,3,4,5 "Built target PrograEstructuras02"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/seb/Documents/GitHub/PrograEstructuras02/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target PrograEstructuras02"
 .PHONY : CMakeFiles/PrograEstructuras02.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/PrograEstructuras02.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/seb/Documents/GitHub/PrograEstructuras02/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/seb/Documents/GitHub/PrograEstructuras02/CMakeFiles 6
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/PrograEstructuras02.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/seb/Documents/GitHub/PrograEstructuras02/CMakeFiles 0
 .PHONY : CMakeFiles/PrograEstructuras02.dir/rule
@@ -102,7 +102,7 @@ PrograEstructuras02: CMakeFiles/PrograEstructuras02.dir/rule
 # codegen rule for target.
 CMakeFiles/PrograEstructuras02.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/PrograEstructuras02.dir/build.make CMakeFiles/PrograEstructuras02.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/seb/Documents/GitHub/PrograEstructuras02/CMakeFiles --progress-num=1,2,3,4,5 "Finished codegen for target PrograEstructuras02"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/seb/Documents/GitHub/PrograEstructuras02/CMakeFiles --progress-num=1,2,3,4,5,6 "Finished codegen for target PrograEstructuras02"
 .PHONY : CMakeFiles/PrograEstructuras02.dir/codegen
 
 # clean rule for target.
