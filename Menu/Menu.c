@@ -49,11 +49,11 @@ int obtener_opcion(int min, int max) {
             if (opcion >= min && opcion <= max) {
                 return opcion; // Opción válida
             } else {
-                printf("❌ Opción fuera de rango. Ingrese un número entre %d y %d.\n", min, max);
+                printf("Opción fuera de rango. Ingrese un número entre %d y %d.\n", min, max);
             }
         } else {
             // La entrada no fue un entero
-            printf("❌ Entrada inválida. Por favor, ingrese un número.\n");
+            printf("Entrada inválida. Por favor, ingrese un número.\n");
         }
     }
 }
