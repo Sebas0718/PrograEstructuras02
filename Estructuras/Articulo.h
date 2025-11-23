@@ -2,7 +2,7 @@
 #define PROGRAESTRUCTURAS02_ARTICULO_H
 
 // ESTA LÍNEA ES CLAVE
-typedef struct Articulo
+struct Articulo
 {
     char* titulo;
     char* nombre; // Usando los nombres de tu código
@@ -12,6 +12,6 @@ typedef struct Articulo
     char* ruta;
     int palabras_titulo; // Usando los nombres de tu código
     // O int palabrasTitulo; (usa el que definiste)
-} Articulo; // <--- ¡Esto permite usar solo 'Articulo'!
+};
 
 #endif //PROGRAESTRUCTURAS02_ARTICULO_H

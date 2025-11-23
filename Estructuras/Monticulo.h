@@ -3,12 +3,12 @@
 #include "Articulo.h"
 
 // ESTA LÍNEA ES CLAVE
-typedef struct Monticulo
+struct Monticulo
 {
-    Articulo* datos;
+    struct Articulo* datos;
     int tamano;
     int capacidad;
     int tipo_ordenamiento;
-} Monticulo; // <--- ¡Esto permite usar solo 'Monticulo'!
+}; // <--- ¡Esto permite usar solo 'Monticulo'!
 
 #endif //PROGRAESTRUCTURAS02_MONTICULO_H

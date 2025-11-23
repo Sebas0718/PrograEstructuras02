@@ -37,7 +37,7 @@ int contar_palabras(char *texto) {
 }
 //##################################################################################
 
-int leer_articulos(const char* nombre_archivo, Articulo** lista_articulos)
+int leer_articulos(const char* nombre_archivo, struct Articulo** lista_articulos)
 {
     FILE *archivo = fopen(nombre_archivo, "r");
     if (archivo == NULL)
@@ -49,11 +49,11 @@ int leer_articulos(const char* nombre_archivo, Articulo** lista_articulos)
     size_t len = 0;
     int contador = 0;
 
-    Articulo *lista_articulos_temp = NULL;
+    struct Articulo *lista_articulos_temp = NULL;
 
     while (getline(&linea,&len,archivo) != -1)
     {
-        
+
         // 1. Limpiar el salto de línea y verificar si la línea está vacía
         linea[strcspn(linea,"\n")] = 0;
 
@@ -65,7 +65,7 @@ int leer_articulos(const char* nombre_archivo, Articulo** lista_articulos)
         }
 
         // 2. Realloc y manejo de errores
-        Articulo *nuevo_espacio_articulo = (Articulo*) realloc(lista_articulos_temp,(contador + 1) * sizeof(Articulo));
+        struct Articulo *nuevo_espacio_articulo = (struct Articulo*) realloc(lista_articulos_temp,(contador + 1) * sizeof(struct Articulo));
         if (nuevo_espacio_articulo == NULL)
         {
             perror("Error al crear espacio para el articulo");
@@ -134,7 +134,7 @@ int leer_articulos(const char* nombre_archivo, Articulo** lista_articulos)
 }
 //##################################################################################
 
-void liberar_articulos(Articulo* articulos,int num_articulos)
+void liberar_articulos(struct Articulo* articulos,int num_articulos)
 {
     if (articulos == NULL) return; // Mejor check
 
@@ -150,13 +150,13 @@ void liberar_articulos(Articulo* articulos,int num_articulos)
 }
 
 //##################################################################################
-void swap(Articulo *a, Articulo *b) {
-    Articulo temp = *a;
+void swap(struct Articulo *a, struct Articulo *b) {
+    struct Articulo temp = *a;
     *a = *b;
     *b = temp;
 }
 //##################################################################################
-int comparar(Articulo a, Articulo b, int tipo) {
+int comparar(struct Articulo a,struct Articulo b, int tipo) {
     switch (tipo) {
 
     case 1:
@@ -167,7 +167,6 @@ int comparar(Articulo a, Articulo b, int tipo) {
 
     case 3:
         return strcmp(a.ruta, b.ruta);
-
     case 4:
         return (int)strlen(a.abstract) - (int)strlen(b.abstract);
     case 5:
@@ -178,7 +177,7 @@ int comparar(Articulo a, Articulo b, int tipo) {
 }
 
 //##################################################################################
-void flotar(Monticulo *m, int index) {
+void flotar(struct Monticulo *m, int index) {
     // ... (El código de flotar es correcto con el tipo Monticulo) ...
     while (index > 0) {
         int padre = (index - 1) / 2;
@@ -192,10 +191,10 @@ void flotar(Monticulo *m, int index) {
 }
 
 //##################################################################################
-void insertar(Monticulo *m, Articulo art) {
+void insertar(struct Monticulo *m, struct Articulo art) {
     if (m->tamano == m->capacidad) {
         m->capacidad *= 2;
-        m->datos = (Articulo*) realloc(m->datos, m->capacidad * sizeof(Articulo));
+        m->datos = (struct Articulo*) realloc(m->datos, m->capacidad * sizeof(struct Articulo));
         if (m->datos == NULL) {
             perror("Error fatal: No se pudo redimensionar el montículo");
             exit(1);
@@ -209,11 +208,11 @@ void insertar(Monticulo *m, Articulo art) {
     flotar(m, indice_actual);
 }
 //##################################################################################
-Monticulo* crear_monticulo(int capacidad, int tipo) {
-    Monticulo *m = (Monticulo*) malloc(sizeof(Monticulo));
+struct Monticulo* crear_monticulo(int capacidad, int tipo) {
+    struct Monticulo *m = (struct Monticulo*) malloc(sizeof(struct Monticulo));
     if (m == NULL) return NULL;
 
-    m->datos = (Articulo*) malloc(capacidad * sizeof(Articulo));
+    m->datos = (struct Articulo*) malloc(capacidad * sizeof(struct Articulo));
     if (m->datos == NULL) {
         free(m);
         return NULL;
@@ -226,7 +225,8 @@ Monticulo* crear_monticulo(int capacidad, int tipo) {
     return m;
 }
 //##################################################################################
-void hundir(Monticulo *m, int index) {
+
+void hundir(struct Monticulo *m, int index) {
     int hijo_izq, hijo_der, mejor_candidato;
 
     while(1) {
@@ -251,14 +251,14 @@ void hundir(Monticulo *m, int index) {
     }
 }
 //##################################################################################
-Articulo extraer_tope(Monticulo *m) {
+struct Articulo extraer_tope(struct Monticulo *m) {
     if (m->tamano <= 0) {
         // Inicializa con 7 NULL/0 por si la estructura Articulo tiene 7 campos
-        Articulo vacio = {NULL, NULL, NULL, NULL, NULL, NULL, 0};
+        struct Articulo vacio = {NULL, NULL, NULL, NULL, NULL, NULL, 0};
         return vacio;
     }
 
-    Articulo tope = m->datos[0];
+    struct Articulo tope = m->datos[0];
 
     m->datos[0] = m->datos[m->tamano - 1];
     m->tamano--;
@@ -270,7 +270,7 @@ Articulo extraer_tope(Monticulo *m) {
     return tope;
 }
 //##################################################################################
-void destruir_monticulo(Monticulo *m) {
+void destruir_monticulo(struct Monticulo *m) {
     if (m == NULL) return;
 
     if (m->datos != NULL) {

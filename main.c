@@ -6,7 +6,7 @@
 // Incluye tus cabeceras de módulos
 #include "Menu/Menu.h"
 #include "Lector/Lector.h"
-void imprimir_detalle(Articulo a) {
+void imprimir_detalle(struct Articulo a) {
     printf("Título: %s\n", a.titulo);
     printf("         (%d palabras)\n", a.palabras_titulo);
     printf("Autor: %s %s\n", a.nombre, a.apellido);
@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    Articulo *lista_articulos = NULL;
+    struct Articulo *lista_articulos = NULL;
     int num_articulos = 0;
 
     // 2. Cargar artículos
@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
         opcion = mostrar_menu();
 
         // Declaración del puntero al montículo fuera del switch para evitar errores de compilación
-        Monticulo *monticulo_ordenamiento = NULL;
+        struct Monticulo *monticulo_ordenamiento = NULL;
 
         switch (opcion) {
 
@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
                 printf("\n--- RESULTADO ORDENADO ---\n");
                 // 3. Extraer y mostrar en orden
                 for (int i = 0; i < num_articulos; i++) {
-                    Articulo a = extraer_tope(monticulo_ordenamiento);
+                    struct Articulo a = extraer_tope(monticulo_ordenamiento);
                     imprimir_detalle(a);
                     printf("--------------------------------------\n");
                 }
@@ -98,7 +98,7 @@ int main(int argc, char *argv[]) {
                 printf("\n--- RESULTADO ORDENADO ---\n");
                 // 3. Extraer y mostrar en orden
                 for (int i = 0; i < num_articulos; i++) {
-                    Articulo a = extraer_tope(monticulo_ordenamiento);
+                    struct Articulo a = extraer_tope(monticulo_ordenamiento);
                     imprimir_detalle(a);
                     printf("--------------------------------------\n");
                 }
@@ -128,7 +128,7 @@ int main(int argc, char *argv[]) {
                 printf("\n--- RESULTADO ORDENADO ---\n");
                 // 3. Extraer y mostrar en orden
                 for (int i = 0; i < num_articulos; i++) {
-                    Articulo a = extraer_tope(monticulo_ordenamiento);
+                    struct Articulo a = extraer_tope(monticulo_ordenamiento);
                     imprimir_detalle(a);
                     printf("--------------------------------------\n");
                 }
@@ -158,7 +158,7 @@ int main(int argc, char *argv[]) {
                 printf("\n--- RESULTADO ORDENADO ---\n");
                 // 3. Extraer y mostrar en orden
                 for (int i = 0; i < num_articulos; i++) {
-                    Articulo a = extraer_tope(monticulo_ordenamiento);
+                    struct Articulo a = extraer_tope(monticulo_ordenamiento);
                     imprimir_detalle(a);
                     printf("--------------------------------------\n");
                 }
@@ -168,22 +168,13 @@ int main(int argc, char *argv[]) {
                 break;
 
             // =================================================================
-            // CASO 5: Muestra el primer artículo cargado
+            // CASO 5: Ordenamiento segun fecha mas reciente
             // =================================================================
-            case 6:
-                printf("\n\n-- Ha elegido: Mostrar primer artículo cargado --\n");
-                if (num_articulos > 0) {
-                    imprimir_detalle(lista_articulos[0]);
-                } else {
-                    printf("No hay artículos cargados para mostrar.\n");
-                }
-                break;
-
             case 5:
                 printf("\n\n-- Ha elegido: Ordenar por Fecha mas reciente --\n");
 
                 // 1. Crear el montículo con tipo de ordenamiento 3
-                monticulo_ordenamiento = crear_monticulo(num_articulos, 3);
+                monticulo_ordenamiento = crear_monticulo(num_articulos, 5);
                 if (monticulo_ordenamiento == NULL) {
                     fprintf(stderr, "Error al crear el montículo.\n");
                     break;
@@ -197,7 +188,7 @@ int main(int argc, char *argv[]) {
                 printf("\n--- RESULTADO ORDENADO ---\n");
                 // 3. Extraer y mostrar en orden
                 for (int i = 0; i < num_articulos; i++) {
-                    Articulo a = extraer_tope(monticulo_ordenamiento);
+                    struct Articulo a = extraer_tope(monticulo_ordenamiento);
                     imprimir_detalle(a);
                     printf("--------------------------------------\n");
                 }
@@ -205,10 +196,19 @@ int main(int argc, char *argv[]) {
                 // 4. Liberar la memoria
                 destruir_monticulo(monticulo_ordenamiento);
                 break;
-
+            //Muestra el primer articulo cargado (verifacion)
+            case 6:
+                printf("\n\n-- Ha elegido: Mostrar primer artículo cargado --\n");
+                if (num_articulos > 0) {
+                    imprimir_detalle(lista_articulos[0]);
+                } else {
+                    printf("No hay artículos cargados para mostrar.\n");
+                }
+                break;
             // =================================================================
             // CASO 0: Salir
             // =================================================================
+
             case 0:
                 printf("\nSaliendo del programa. ¡Memoria liberada!\n");
                 break;
