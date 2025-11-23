@@ -30,7 +30,7 @@ int contar_palabras(char *texto) {
 
     while (token != NULL) {
         contador++;
-        token = strtok(NULL, delimitadores);
+        token = strtok_r(NULL, delimitadores);
     }
     free(copia_texto); // Liberar la memoria de la copia
     return contador;
@@ -102,7 +102,7 @@ int leer_articulos(const char* nombre_archivo, Articulo** lista_articulos)
                     break;
                 case 2: // Tercer campo en el archivo: Titulo
                     lista_articulos_temp[contador].titulo = strdup(token);
-                    //lista_articulos_temp[contador].palabras_titulo = contar_palabras(token);
+                    lista_articulos_temp[contador].palabras_titulo = contar_palabras(token);
                     break;
                 case 3: // Cuarto campo en el archivo: Ruta
                     lista_articulos_temp[contador].ruta = strdup(token);
@@ -175,6 +175,7 @@ int comparar(Articulo a, Articulo b, int tipo) {
         return 0;
     }
 }
+
 //##################################################################################
 void flotar(Monticulo *m, int index) {
     // ... (El código de flotar es correcto con el tipo Monticulo) ...

@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 // Incluye tus cabeceras de estructuras
 #include "Estructuras/Articulo.h"
@@ -26,8 +25,10 @@ void imprimir_detalle(Articulo a) {
     printf("Resumen (Abstract): %s\n", a.abstract);
     printf("Ruta: %s\n", a.ruta);
 }
+
 // --- Fin de la función corregida ---
 
+#include <stdio.h>
 
 int main(int argc, char *argv[]) {
     // 1. Verificación de argumentos

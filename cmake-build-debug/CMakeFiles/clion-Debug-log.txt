@@ -1,0 +1,4 @@
+Cannot generate into /home/emmanuel/Documentos/TEC/PrograEstructuras02
+It is already used for project /home/seb/Documents/GitHub/PrograEstructuras02
+
+Please either delete it manually or select another generation directory
