@@ -6,27 +6,14 @@
 // Incluye tus cabeceras de módulos
 #include "Menu/Menu.h"
 #include "Lector/Lector.h"
-
-// NOTA: Si tienes las funciones de impresión en Impresor/Impresor.c,
-// debes incluirlas aquí con #include "Impresor/Impresor.h"
-
-// --- Función que causó el error ---
-// La función `imprimir_detalle` con el nombre de campo corregido:
-
 void imprimir_detalle(Articulo a) {
     printf("Título: %s\n", a.titulo);
     printf("         (%d palabras)\n", a.palabras_titulo);
-
-    // Asumiendo que quieres 'Nombre Apellido'
     printf("Autor: %s %s\n", a.nombre, a.apellido);
-
-    // ¡AQUÍ ESTÁ LA CORRECCIÓN!
     printf("Fecha: %s\n", a.fecha);
     printf("Resumen (Abstract): %s\n", a.abstract);
     printf("Ruta: %s\n", a.ruta);
 }
-
-// --- Fin de la función corregida ---
 
 #include <stdio.h>
 
@@ -42,7 +29,6 @@ int main(int argc, char *argv[]) {
 
     // 2. Cargar artículos
     printf("Cargando artículos desde %s...\n", argv[1]);
-    // Asume que leer_articulos requiere el nombre del archivo y el puntero al array
     num_articulos = leer_articulos(argv[1], &lista_articulos);
 
     if (num_articulos <= 0) {
@@ -54,7 +40,6 @@ int main(int argc, char *argv[]) {
 
     int opcion;
     do {
-        // Asume que mostrar_menu() y obtener_opcion() están en Menu/Menu.c
         opcion = mostrar_menu();
 
         // Declaración del puntero al montículo fuera del switch para evitar errores de compilación
@@ -225,7 +210,7 @@ int main(int argc, char *argv[]) {
             // CASO 0: Salir
             // =================================================================
             case 0:
-                printf("\nSaliendo del programa. ¡Memoria liberada! 👋\n");
+                printf("\nSaliendo del programa. ¡Memoria liberada!\n");
                 break;
 
             default:
@@ -234,7 +219,7 @@ int main(int argc, char *argv[]) {
         }
     } while (opcion != 0);
 
-// La liberación de lista_articulos se mantiene fuera del loop:
+// La liberación de lista_articulos:
     liberar_articulos(lista_articulos, num_articulos);
 
     return 0;
