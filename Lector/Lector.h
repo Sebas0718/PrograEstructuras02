@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define DELIMITADOR ";"
+#define DELIMITADOR "|"
 //
 // Created by seb on 11/18/25.
 //

@@ -86,7 +86,7 @@ int leer_articulos(const char* nombre_archivo, Articulo** lista_articulos)
         char* token;
         int campo = 0;
 
-        token = strtok(linea,";");
+        token = strtok(linea,delimitador);
         while (token != NULL)
         {
             // Verificación defensiva
@@ -116,7 +116,7 @@ int leer_articulos(const char* nombre_archivo, Articulo** lista_articulos)
                 }
             }
             campo++;
-            token = strtok(NULL,";");
+            token = strtok(NULL,delimitador);
         }
         if (lista_articulos_temp[contador].titulo == NULL) lista_articulos_temp[contador].titulo = strdup("");
         if (lista_articulos_temp[contador].nombre == NULL) lista_articulos_temp[contador].nombre = strdup("");
