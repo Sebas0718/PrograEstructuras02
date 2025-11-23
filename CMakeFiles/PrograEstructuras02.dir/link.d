@@ -6,6 +6,7 @@ PrograEstructuras02: \
   CMakeFiles/PrograEstructuras02.dir/Lector/Lector.c.o \
   CMakeFiles/PrograEstructuras02.dir/Impresor/Impresor.c.o \
   CMakeFiles/PrograEstructuras02.dir/Menu/Menu.c.o \
+  CMakeFiles/PrograEstructuras02.dir/Programa/Programa.c.o \
   /usr/lib/gcc/x86_64-redhat-linux/15/libgcc.a \
   /usr/lib/gcc/x86_64-redhat-linux/15/libgcc_s.so \
   /usr/lib/gcc/x86_64-redhat-linux/15/libgcc_s.so \
@@ -41,6 +42,8 @@ CMakeFiles/PrograEstructuras02.dir/Lector/Lector.c.o:
 CMakeFiles/PrograEstructuras02.dir/Impresor/Impresor.c.o:
 
 CMakeFiles/PrograEstructuras02.dir/Menu/Menu.c.o:
+
+CMakeFiles/PrograEstructuras02.dir/Programa/Programa.c.o:
 
 /usr/lib/gcc/x86_64-redhat-linux/15/libgcc.a:
 

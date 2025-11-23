@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I/home/seb/Documents/GitHub/PrograEstructuras02/Estructuras -I/home/seb/Documents/GitHub/PrograEstructuras02/Impresor -I/home/seb/Documents/GitHub/PrograEstructuras02/Lector -I/home/seb/Documents/GitHub/PrograEstructuras02/Menu
+C_INCLUDES = -I/home/seb/Documents/GitHub/PrograEstructuras02/Estructuras -I/home/seb/Documents/GitHub/PrograEstructuras02/Impresor -I/home/seb/Documents/GitHub/PrograEstructuras02/Lector -I/home/seb/Documents/GitHub/PrograEstructuras02/Menu -I/home/seb/Documents/GitHub/PrograEstructuras02/Programa
 
 C_FLAGS = -std=gnu11
 

@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/seb/Documents/GitHub/PrograEstructuras02/Impresor/Impresor.c" "CMakeFiles/PrograEstructuras02.dir/Impresor/Impresor.c.o" "gcc" "CMakeFiles/PrograEstructuras02.dir/Impresor/Impresor.c.o.d"
   "/home/seb/Documents/GitHub/PrograEstructuras02/Lector/Lector.c" "CMakeFiles/PrograEstructuras02.dir/Lector/Lector.c.o" "gcc" "CMakeFiles/PrograEstructuras02.dir/Lector/Lector.c.o.d"
   "/home/seb/Documents/GitHub/PrograEstructuras02/Menu/Menu.c" "CMakeFiles/PrograEstructuras02.dir/Menu/Menu.c.o" "gcc" "CMakeFiles/PrograEstructuras02.dir/Menu/Menu.c.o.d"
+  "/home/seb/Documents/GitHub/PrograEstructuras02/Programa/Programa.c" "CMakeFiles/PrograEstructuras02.dir/Programa/Programa.c.o" "gcc" "CMakeFiles/PrograEstructuras02.dir/Programa/Programa.c.o.d"
   "/home/seb/Documents/GitHub/PrograEstructuras02/main.c" "CMakeFiles/PrograEstructuras02.dir/main.c.o" "gcc" "CMakeFiles/PrograEstructuras02.dir/main.c.o.d"
   "" "PrograEstructuras02" "gcc" "CMakeFiles/PrograEstructuras02.dir/link.d"
   )

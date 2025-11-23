@@ -1,7 +1,8 @@
-CMakeFiles/PrograEstructuras02.dir/Impresor/Impresor.c.o: \
- /home/seb/Documents/GitHub/PrograEstructuras02/Impresor/Impresor.c \
+CMakeFiles/PrograEstructuras02.dir/Programa/Programa.c.o: \
+ /home/seb/Documents/GitHub/PrograEstructuras02/Programa/Programa.c \
  /usr/include/stdc-predef.h \
- /home/seb/Documents/GitHub/PrograEstructuras02/Impresor/Impresor.h \
+ /home/seb/Documents/GitHub/PrograEstructuras02/Programa/Programa.h \
+ /home/seb/Documents/GitHub/PrograEstructuras02/Programa/../Impresor/Impresor.h \
  /usr/include/stdio.h /usr/include/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/bits/wordsize.h /usr/include/bits/timesize.h \
@@ -35,4 +36,11 @@ CMakeFiles/PrograEstructuras02.dir/Impresor/Impresor.c.o: \
  /usr/include/bits/stdlib-float.h /usr/include/string.h \
  /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
  /usr/include/strings.h \
- /home/seb/Documents/GitHub/PrograEstructuras02/Impresor/../Estructuras/Articulo.h
+ /home/seb/Documents/GitHub/PrograEstructuras02/Programa/../Impresor/../Estructuras/Articulo.h \
+ /home/seb/Documents/GitHub/PrograEstructuras02/Programa/../Estructuras/Articulo.h \
+ /home/seb/Documents/GitHub/PrograEstructuras02/Programa/../Estructuras/Monticulo.h \
+ /home/seb/Documents/GitHub/PrograEstructuras02/Programa/../Estructuras/Articulo.h \
+ /home/seb/Documents/GitHub/PrograEstructuras02/Programa/../Lector/Lector.h \
+ /home/seb/Documents/GitHub/PrograEstructuras02/Programa/../Lector/../Estructuras/Articulo.h \
+ /home/seb/Documents/GitHub/PrograEstructuras02/Programa/../Lector/../Estructuras/Monticulo.h \
+ /home/seb/Documents/GitHub/PrograEstructuras02/Programa/../Menu/Menu.h
