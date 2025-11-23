@@ -30,7 +30,7 @@ int contar_palabras(char *texto) {
 
     while (token != NULL) {
         contador++;
-        token = strtok_r(NULL, delimitadores);
+        token = strtok_r(NULL, delimitadores,&segunda_copia_texto);
     }
     free(copia_texto); // Liberar la memoria de la copia
     return contador;
