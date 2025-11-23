@@ -57,7 +57,7 @@ int leer_articulos(const char* nombre_archivo, Articulo** lista_articulos)
         // 1. Limpiar el salto de línea y verificar si la línea está vacía
         linea[strcspn(linea,"\n")] = 0;
 
-        // 🚨 NUEVA LÍNEA: ELIMINAR EL RETORNO DE CARRO \r 🚨
+        // NUEVA LÍNEA: ELIMINAR EL RETORNO DE CARRO
         linea[strcspn(linea,"\r")] = 0;
 
         if (strlen(linea) == 0) {
@@ -188,6 +188,7 @@ void flotar(Monticulo *m, int index) {
         }
     }
 }
+
 //##################################################################################
 void insertar(Monticulo *m, Articulo art) {
     if (m->tamano == m->capacidad) {
