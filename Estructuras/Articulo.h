@@ -11,7 +11,6 @@ struct Articulo
     char* abstract; // Usando los nombres de tu código
     char* ruta;
     int palabras_titulo; // Usando los nombres de tu código
-    // O int palabrasTitulo; (usa el que definiste)
 };
 
 #endif //PROGRAESTRUCTURAS02_ARTICULO_H

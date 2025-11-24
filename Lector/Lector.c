@@ -160,12 +160,18 @@ int comparar(struct Articulo a,struct Articulo b, int tipo) {
     switch (tipo) {
 
     case 1:
+        if (a.titulo == NULL && b.titulo == NULL) return 0;
+        if (a.titulo == NULL) return 1;  // Un NULL es "más grande", va al final del Min-Heap
+        if (b.titulo == NULL) return -1; // Un no-NULL es "más pequeño", va antes
         return strcmp(a.titulo, b.titulo);
 
     case 2:
         return a.palabras_titulo - b.palabras_titulo;
 
     case 3:
+        if (a.ruta == NULL && b.ruta == NULL) return 0;
+        if (a.ruta == NULL) return 1;
+        if (b.ruta == NULL) return -1;
         return strcmp(a.ruta, b.ruta);
     case 4:
         return (int)strlen(a.abstract) - (int)strlen(b.abstract);
