@@ -2,9 +2,17 @@
 #include <stdlib.h>
 #include "Menu.h"
 
+
+//#######################################################################
 /**
- * @brief Muestra el menú principal y retorna la opción elegida por el usuario.
- * @return La opción elegida (entero entre 0 y 5).
+ * @function mostrar_menu
+ * @brief Despliega el menú de opciones de ordenamiento y control del programa al usuario.
+ *
+ * Muestra las diferentes opciones de ordenamiento basadas en el Montículo Mínimo,
+ * utilizando las llaves de texto (Título, Ruta) y llaves numéricas (Palabras, Longitud de Abstract, Fecha).
+ * Delega la captura y validación de la entrada del usuario a la función 'obtener_opcion'.
+ *
+ * @return El número de la opción elegida por el usuario.
  */
 int mostrar_menu() {
     printf("\n==============================================\n");
@@ -23,11 +31,18 @@ int mostrar_menu() {
     // Llama a la función que solicita y valida la entrada
     return obtener_opcion(0, 6);
 }
-
+//#######################################################################
 /**
- * @brief Solicita y valida la opción del menú al usuario.
- * @param min El valor mínimo válido para la opción.
- * @param max El valor máximo válido para la opción.
+ * @function obtener_opcion
+ * @brief Maneja la interacción con el usuario para solicitar y validar una opción numérica.
+ *
+ * Implementa un bucle infinito que solo termina cuando el usuario ingresa un número
+ * que está dentro del rango especificado (min y max). Utiliza fgets y sscanf para
+ * leer la línea completa, lo que previene errores causados por caracteres basura
+ * en el búfer de entrada (stdin) y garantiza una validación robusta de la entrada.
+ *
+ * @param min El valor entero mínimo aceptable para la opción.
+ * @param max El valor entero máximo aceptable para la opción.
  * @return La opción válida ingresada por el usuario.
  */
 int obtener_opcion(int min, int max) {
@@ -58,3 +73,4 @@ int obtener_opcion(int min, int max) {
         }
     }
 }
+//#######################################################################

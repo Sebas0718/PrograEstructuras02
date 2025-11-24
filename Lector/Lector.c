@@ -2,17 +2,26 @@
 // Created by seb on 11/18/25.
 //
 
-// INCLUDES DE LIBRERÍAS ESTÁNDAR (¡Críticos!)
-#include <stdlib.h> // for malloc, realloc, free, exit, NULL, perror
-#include <string.h> // for strdup, strtok, strcmp, strlen
-#include <stdio.h>  // for FILE, fopen
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
-// INCLUDES DE CABECERAS DEL PROYECTO
-#include "Lector.h" // Contiene DELIMITADOR y prototipos
+#include "Lector.h"
 #include "../Estructuras/Articulo.h"
 #include "../Estructuras/Monticulo.h"
 //##################################################################################
-
+/**
+ * @function contar_palabras
+ * @brief Cuenta el número de palabras en una cadena de texto dada.
+ *
+ * Utiliza la función thread-safe strtok_r para tokenizar la cadena por
+ * delimitadores comunes (espacios, signos de puntuación, etc.) y retorna el conteo.
+ * Se crea una copia de la cadena de entrada usando strdup para evitar modificar
+ * la cadena original (el título del artículo).
+ *
+ * @param texto La cadena (título del artículo) a analizar.
+ * @return El número de palabras encontradas; 0 si la cadena es nula o vacía.
+ */
 int contar_palabras(char *texto) {
     if (texto == NULL || strlen(texto) == 0) {
         return 0;
@@ -36,7 +45,20 @@ int contar_palabras(char *texto) {
     return contador;
 }
 //##################################################################################
-
+/**
+ * @function leer_articulos
+ * @brief Carga los metadatos de los artículos desde un archivo de texto.
+ *
+ * Lee el archivo línea por línea, usando el delimitador especificado (DELIMITADOR)
+ * para separar los campos de cada artículo. Asigna dinámicamente memoria para cada
+ * campo usando strdup y para el arreglo completo de artículos usando realloc.
+ * Maneja errores de apertura de archivo, asignación de memoria y limpia saltos de línea.
+ *
+ * @param nombre_archivo La ruta del archivo de texto a leer.
+ * @param lista_articulos Puntero a puntero que será actualizado con la dirección
+ * del arreglo dinámico de estructuras Articulo cargado.
+ * @return El número de artículos cargados exitosamente; -1 en caso de error.
+ */
 int leer_articulos(const char* nombre_archivo, struct Articulo** lista_articulos)
 {
     FILE *archivo = fopen(nombre_archivo, "r");
@@ -133,7 +155,17 @@ int leer_articulos(const char* nombre_archivo, struct Articulo** lista_articulos
     return contador;
 }
 //##################################################################################
-
+/**
+ * @function liberar_articulos
+ * @brief Libera toda la memoria dinámica asociada al arreglo de artículos.
+ *
+ * Itera sobre todos los artículos del arreglo para liberar la memoria de cada
+ * campo de cadena (char*) asignado con strdup (titulo, nombre, apellido, etc.).
+ * Finalmente, libera la memoria del arreglo Articulo principal.
+ *
+ * @param articulos Puntero al arreglo de estructuras Articulo.
+ * @param num_articulos El número de artículos cargados en el arreglo.
+ */
 void liberar_articulos(struct Articulo* articulos,int num_articulos)
 {
     if (articulos == NULL) return; // Mejor check
@@ -150,45 +182,82 @@ void liberar_articulos(struct Articulo* articulos,int num_articulos)
 }
 
 //##################################################################################
+
+/**
+ * @function swap
+ * @brief Intercambia el contenido de dos estructuras Articulo.
+ *
+ * Función auxiliar utilizada por los algoritmos de Montículo (flotar y hundir)
+ * para reubicar los elementos dentro del arreglo base del montículo.
+ *
+ * @param a Puntero al primer artículo.
+ * @param b Puntero al segundo artículo.
+ */
 void swap(struct Articulo *a, struct Articulo *b) {
     struct Articulo temp = *a;
     *a = *b;
     *b = temp;
 }
 //##################################################################################
-int comparar(struct Articulo a,struct Articulo b, int tipo) {
+
+/**
+ * @function comparar
+ * @brief Determina el orden relativo de dos artículos basándose en el tipo de ordenamiento.
+ *
+ * Actúa como la llave de comparación del Montículo Mínimo.
+ * Devuelve un valor negativo si 'a' es menor (debe ir antes),
+ * un valor positivo si 'a' es mayor (debe ir después), o 0 si son iguales.
+ * Incluye manejo defensivo para punteros NULL en campos de texto (Min-Heap: NULL va al final).
+ *
+ * @param articuloA Primer artículo a comparar.
+ * @param articuloB Segundo artículo a comparar.
+ * @param tipo El criterio de ordenamiento (1=Título, 2=Palabras, 3=Ruta, 4=Longitud Abstract, 5=Fecha).
+ * @return Un entero: < 0 (a es menor), > 0 (a es mayor), 0 (iguales).
+ */
+int comparar(struct Articulo articuloA,struct Articulo articuloB, int tipo) {
     switch (tipo) {
 
     case 1:
-        if (a.titulo == NULL && b.titulo == NULL) return 0;
-        if (a.titulo == NULL) return 1;  // Un NULL es "más grande", va al final del Min-Heap
-        if (b.titulo == NULL) return -1; // Un no-NULL es "más pequeño", va antes
-        return strcmp(a.titulo, b.titulo);
+        if (articuloA.titulo == NULL && articuloB.titulo == NULL) return 0;
+        if (articuloA.titulo == NULL) return 1;  // Un NULL es "más grande", va al final del Min-Heap
+        if (articuloA.titulo == NULL) return -1; // Un no-NULL es "más pequeño", va antes
+        return strcmp(articuloA.titulo, articuloB.titulo);
 
     case 2:
-        return a.palabras_titulo - b.palabras_titulo;
+        return articuloA.palabras_titulo - articuloB.palabras_titulo;
 
     case 3:
-        if (a.ruta == NULL && b.ruta == NULL) return 0;
-        if (a.ruta == NULL) return 1;
-        if (b.ruta == NULL) return -1;
-        return strcmp(a.ruta, b.ruta);
+        if (articuloA.ruta == NULL && articuloB.ruta == NULL) return 0;
+        if (articuloA.ruta == NULL) return 1;
+        if (articuloA.ruta == NULL) return -1;
+        return strcmp(articuloA.ruta, articuloB.ruta);
     case 4:
-        return (int)strlen(a.abstract) - (int)strlen(b.abstract);
+        return (int)strlen(articuloA.abstract) - (int)strlen(articuloB.abstract);
     case 5:
-        return strcmp(b.fecha,a.fecha);
+        return strcmp(articuloB.fecha,articuloA.fecha);
     default:
         return 0;
     }
 }
 
 //##################################################################################
-void flotar(struct Monticulo *m, int index) {
+/**
+ * @function flotar
+ * @brief Restaura la propiedad del Montículo Mínimo subiendo (flotando) un nodo.
+ *
+ * Se utiliza después de una inserción. Compara el nodo en 'index' con su padre;
+ * si el hijo es "menor" según la función 'comparar', los intercambia y repite el proceso
+ * hasta que el nodo esté en su posición correcta o llegue a la raíz.
+ *
+ * @param monticulo Puntero al Montículo.
+ * @param index El índice del nodo recién insertado o modificado que debe flotar.
+ */
+void flotar(struct Monticulo *monticulo, int index) {
     // ... (El código de flotar es correcto con el tipo Monticulo) ...
     while (index > 0) {
         int padre = (index - 1) / 2;
-        if (comparar(m->datos[index], m->datos[padre], m->tipo_ordenamiento) < 0) {
-            swap(&m->datos[index], &m->datos[padre]);
+        if (comparar(monticulo->datos[index], monticulo->datos[padre], monticulo->tipo_ordenamiento) < 0) {
+            swap(&monticulo->datos[index], &monticulo->datos[padre]);
             index = padre;
         } else {
             break;
@@ -197,23 +266,47 @@ void flotar(struct Monticulo *m, int index) {
 }
 
 //##################################################################################
-void insertar(struct Monticulo *m, struct Articulo art) {
-    if (m->tamano == m->capacidad) {
-        m->capacidad *= 2;
-        m->datos = (struct Articulo*) realloc(m->datos, m->capacidad * sizeof(struct Articulo));
-        if (m->datos == NULL) {
+/**
+ * @function insertar
+ * @brief Inserta un nuevo artículo en el Montículo Mínimo.
+ *
+ * Si el montículo está lleno, duplica su capacidad usando realloc.
+ * Agrega el nuevo artículo al final del arreglo e invoca 'flotar' para
+ * restaurar la propiedad del Montículo Mínimo.
+ *
+ * @param monticulo Puntero al Montículo.
+ * @param art La estructura Articulo a insertar.
+ */
+
+void insertar(struct Monticulo *monticulo, struct Articulo art) {
+    if (monticulo->tamano == monticulo->capacidad) {
+        monticulo->capacidad *= 2;
+        monticulo->datos = (struct Articulo*) realloc(monticulo->datos, monticulo->capacidad * sizeof(struct Articulo));
+        if (monticulo->datos == NULL) {
             perror("Error fatal: No se pudo redimensionar el montículo");
             exit(1);
         }
     }
 
-    int indice_actual = m->tamano;
-    m->datos[indice_actual] = art;
-    m->tamano++;
+    int indice_actual = monticulo->tamano;
+    monticulo->datos[indice_actual] = art;
+    monticulo->tamano++;
 
-    flotar(m, indice_actual);
+    flotar(monticulo, indice_actual);
 }
 //##################################################################################
+/**
+ * @function crear_monticulo
+ * @brief Asigna memoria e inicializa una nueva estructura Monticulo.
+ *
+ * Reserva espacio para la estructura Monticulo y para su arreglo de datos (struct Articulo*).
+ * Establece el tamaño inicial a cero y guarda la capacidad y el tipo de ordenamiento deseado.
+ *
+ * @param capacidad La capacidad inicial del arreglo interno del montículo.
+ * @param tipo El criterio de ordenamiento inicial (tipo_ordenamiento).
+ * @return Puntero a la nueva estructura Monticulo; NULL en caso de fallo de asignación de memoria.
+ */
+
 struct Monticulo* crear_monticulo(int capacidad, int tipo) {
     struct Monticulo *m = (struct Monticulo*) malloc(sizeof(struct Monticulo));
     if (m == NULL) return NULL;
@@ -231,8 +324,18 @@ struct Monticulo* crear_monticulo(int capacidad, int tipo) {
     return m;
 }
 //##################################################################################
-
-void hundir(struct Monticulo *m, int index) {
+/**
+ * @function hundir
+ * @brief Restaura la propiedad del Montículo Mínimo bajando (hundiendo) un nodo.
+ *
+ * Se utiliza después de extraer la raíz. Compara el nodo en 'index' con sus hijos;
+ * lo intercambia con el hijo "menor" y repite el proceso hasta que el nodo
+ * esté en una posición donde es menor o igual que sus hijos, o llegue a una hoja.
+ *
+ * @param monticulo Puntero al Montículo.
+ * @param index El índice del nodo que debe hundirse (generalmente la raíz, índice 0).
+ */
+void hundir(struct Monticulo *monticulo, int index) {
     int hijo_izq, hijo_der, mejor_candidato;
 
     while(1) {
@@ -240,16 +343,16 @@ void hundir(struct Monticulo *m, int index) {
         hijo_der = 2 * index + 2;
         mejor_candidato = index;
 
-        if (hijo_izq < m->tamano && comparar(m->datos[hijo_izq], m->datos[mejor_candidato], m->tipo_ordenamiento) < 0) {
+        if (hijo_izq < monticulo->tamano && comparar(monticulo->datos[hijo_izq], monticulo->datos[mejor_candidato], monticulo->tipo_ordenamiento) < 0) {
             mejor_candidato = hijo_izq;
         }
 
-        if (hijo_der < m->tamano && comparar(m->datos[hijo_der], m->datos[mejor_candidato], m->tipo_ordenamiento) < 0) {
+        if (hijo_der < monticulo->tamano && comparar(monticulo->datos[hijo_der], monticulo->datos[mejor_candidato], monticulo->tipo_ordenamiento) < 0) {
             mejor_candidato = hijo_der;
         }
 
         if (mejor_candidato != index) {
-            swap(&m->datos[index], &m->datos[mejor_candidato]);
+            swap(&monticulo->datos[index], &monticulo->datos[mejor_candidato]);
             index = mejor_candidato;
         } else {
             break;
@@ -257,32 +360,55 @@ void hundir(struct Monticulo *m, int index) {
     }
 }
 //##################################################################################
-struct Articulo extraer_tope(struct Monticulo *m) {
-    if (m->tamano <= 0) {
+/**
+ * @function extraer_tope
+ * @brief Extrae y retorna el elemento con la llave más pequeña (la raíz) del Montículo Mínimo.
+ *
+ * El elemento en la raíz (índice 0) se guarda, se reemplaza con el último elemento del arreglo,
+ * se decrementa el tamaño, y se llama a 'hundir' para restaurar la propiedad del montículo.
+ *
+ * @param monticulo Puntero al Montículo.
+ * @return La estructura Articulo que era el tope (el elemento más pequeño).
+ * Retorna una estructura Articulo vacía si el montículo está vacío.
+ */
+
+struct Articulo extraer_tope(struct Monticulo *monticulo) {
+    if (monticulo->tamano <= 0) {
         // Inicializa con 7 NULL/0 por si la estructura Articulo tiene 7 campos
         struct Articulo vacio = {NULL, NULL, NULL, NULL, NULL, NULL, 0};
         return vacio;
     }
 
-    struct Articulo tope = m->datos[0];
+    struct Articulo tope = monticulo->datos[0];
 
-    m->datos[0] = m->datos[m->tamano - 1];
-    m->tamano--;
+    monticulo->datos[0] = monticulo->datos[monticulo->tamano - 1];
+    monticulo->tamano--;
 
-    if (m->tamano > 0) {
-        hundir(m, 0);
+    if (monticulo->tamano > 0) {
+        hundir(monticulo, 0);
     }
 
     return tope;
 }
 //##################################################################################
-void destruir_monticulo(struct Monticulo *m) {
-    if (m == NULL) return;
+/**
+ * @function destruir_monticulo
+ * @brief Libera la memoria asignada al Montículo.
+ *
+ * Libera primero la memoria del arreglo de datos (m->datos) y luego la memoria
+ * de la propia estructura Monticulo.
+ * NOTA: Asume que la memoria de las cadenas dentro de los Articulos ya fue
+ * liberada previamente por 'liberar_articulos' o una función similar.
+ *
+ * @param monticulo Puntero al Montículo.
+ */
+void destruir_monticulo(struct Monticulo *monticulo) {
+    if (monticulo == NULL) return;
 
-    if (m->datos != NULL) {
-        free(m->datos);
+    if (monticulo->datos != NULL) {
+        free(monticulo->datos);
     }
 
-    free(m);
+    free(monticulo);
 }
 //##################################################################################

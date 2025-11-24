@@ -7,7 +7,6 @@
 #include <stdio.h>
 
 int main(int argc, char *argv[]) {
-
     iniciar_programa(argc, argv);
     return 0;
 }
